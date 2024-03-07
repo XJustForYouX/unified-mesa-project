@@ -26,7 +26,7 @@ jobs:
         target_sync_branch: master
         target_repo_token: ${{ secrets.GITHUB_TOKEN }}
         upstream_sync_branch: master
-        upstream_sync_repo: yuzu-emu/yuzu
+        upstream_sync_repo: SolDev69/unified-mesa-project
         upstream_pull_args: '-s recursive -Xtheirs'
         target_branch_push_args: --force
         test_mode: false 
