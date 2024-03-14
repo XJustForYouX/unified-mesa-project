@@ -41,4 +41,3 @@ jobs:
         github_url: https://github.com
         directory: ./mirror
         force: true
-        tags: true
