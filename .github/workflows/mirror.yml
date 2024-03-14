@@ -1,9 +1,9 @@
 name: Mirror Gitlab
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
 
 jobs:
   mirror:
@@ -34,5 +34,6 @@ jobs:
 
     - name: Push changes
       uses: ad-m/github-push-action@master
-      force: true
+      with:
+        force: true
         tags: true
