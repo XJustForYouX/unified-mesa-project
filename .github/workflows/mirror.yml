@@ -34,10 +34,5 @@ jobs:
 
     - name: Push changes
       uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.TOKEN }}
-        repository: ${{ github.repository }}
-        branch: ${{ github.ref }}
-        github_url: https://github.com
-        directory: ./mirror
-        force: true
+      force: true
+        tags: true
