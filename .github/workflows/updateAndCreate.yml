@@ -101,5 +101,6 @@ jobs:
 
     - name: Push changes
       uses: ad-m/github-push-action@master
-      force: true
+      with:
+        force: true
         tags: true
