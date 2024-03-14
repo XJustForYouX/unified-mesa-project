@@ -22,10 +22,12 @@ jobs:
       run: |
         mkdir -p mirror/.github/workflows/
         cp .github/workflows/mirror.yml mirror/.github/workflows/
+        cp .github/workflows/ump-pojav-turnip.yml mirror/.github/workflows/
 
     - name: Commit and force push to GitHub
       run: |
         cd mirror
+        rm -rf .github/workflows/verify.yml
         git remote set-url origin https://github.com/${{ github.repository }}.git
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
@@ -35,7 +37,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
         branch: ${{ github.ref }}
         github_url: https://github.com
