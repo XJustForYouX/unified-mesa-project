@@ -1,9 +1,14 @@
 name: Mirror Gitlab
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "* * * * *"
+  workflow_dispatch:
+   inputs:
+      android:
+        description: 'Whether to trigger an Android build (true/false/auto)'
+        required: false
+        default: 'true'
 
 jobs:
   mirror:
@@ -16,18 +21,19 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Clone GitLab repo
-      run: git clone --branch main https://gitlab.freedesktop.org/mesa/mesa.git mirror
-
+      run: git clone --branch dev https://gitlab.com/luke.defriez/suyu.git mirror
+      
     - name: Copy GitHub Action file to cloned repo
       run: |
         mkdir -p mirror/.github/workflows/
         cp .github/workflows/mirror.yml mirror/.github/workflows/
-        cp .github/workflows/ump-pojav-android.yml mirror/.github/workflows/
-        cp .github/workflows/ump-pojav-android_debug.yml mirror/.github/workflows/
+        cp .github/workflows/android-9-build.yml mirror/.github/workflows/
+        cp .github/dependabot.yml mirror/.github/
 
     - name: Commit and force push to GitHub
       run: |
         cd mirror
+        rm -rf .github/workflows/verify.yml
         git remote set-url origin https://github.com/${{ github.repository }}.git
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
