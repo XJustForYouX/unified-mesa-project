@@ -28,7 +28,7 @@ jobs:
         mkdir -p mirror/.github/workflows/
         cp .github/workflows/mirror.yml mirror/.github/workflows/
         cp .github/workflows/ump-pojav-android.yml mirror/.github/workflows/
-        cp .github/workflows/ump-pojav-android.yml mirror/.github/workflows/
+        cp .github/workflows/ump-pojav-android_debug.yml mirror/.github/workflows/
         cp .github/workflows/updateAndCreate.yml mirror/.github/workflows/
 
     - name: Commit and force push to GitHub
